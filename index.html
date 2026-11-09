@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rohith — Portfolio</title>
+
+  <!-- Google Fonts from the Template -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- External CSS Link -->
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+
+  <!-- DIRECTLY CONNECTED CSS -->
+  <style>
+    :root {
+      --bg-dark: #050507;
+      --bg-card: rgba(17, 17, 23, 0.72);
+      --bg-card-hover: rgba(26, 26, 36, 0.9);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.22);
+      --text-primary: #f5f5f7;
+      --text-secondary: #9494a1;
+      --text-muted: #5a5a66;
+      --owner-green: #10b981;
+      --danger: #ff4d4d;
+
+      --font-display: 'Syne', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 10px;
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    /* Ambient Template Lighting & Grid */
+    .ambient-glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(130px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow-1 {
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, rgba(120, 100, 255, 0.16), transparent 70%);
+      top: -220px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .glow-2 {
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.09), transparent 70%);
+      bottom: -150px;
+      right: -100px;
+    }
+
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: 
+        linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(circle at 50% 30%, black 30%, transparent 85%);
+      -webkit-mask-image: radial-gradient(circle at 50% 30%, black 30%, transparent 85%);
+    }
+
+    /* Glass Panel Template Component */
+    .glass-panel {
+      background: var(--bg-card);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      transition: var(--transition);
+    }
+
+    .glass-panel:hover {
+      border-color: var(--border-hover);
+    }
+
+    /* Floating Glass Navigation */
+    .navbar-wrapper {
+      position: fixed;
+      top: 22px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      padding: 0 20px;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 10px 22px;
+      border-radius: 999px;
+      max-width: 980px;
+      width: 100%;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    .brand-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 7px 14px;
+      border-radius: 999px;
+      transition: var(--transition);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .admin-lock-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 8px 15px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .admin-lock-btn:hover {
+      border-color: var(--border-hover);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text-muted);
+    }
+
+    .status-dot.unlocked {
+      background: var(--owner-green);
+      box-shadow: 0 0 10px var(--owner-green);
+    }
+
+    /* Owner Mode Bottom Floating Bar */
+    .owner-banner {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 99;
+      background: rgba(16, 185, 129, 0.16);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: #d1fae5;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
+    }
+
+    .owner-banner-content {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .owner-banner-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Main Content Container */
+    .main-container {
+      position: relative;
+      z-index: 1;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 130px 20px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 90px;
+    }
+
+    .section-block {
+      scroll-margin-top: 110px;
+    }
+
+    .section-top-bar,
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 22px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .section-index {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* Hero / Home Section */
+    .hero-card {
+      padding: clamp(44px, 7vw, 76px) clamp(28px, 6vw, 64px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 8vw, 5.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+      background: linear-gradient(180deg, #ffffff 0%, #9ca3af 100%);
+      
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-role {
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+    }
+
+    .hero-description {
+      max-width: 580px;
+      margin: 0 auto 32px;
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Bento Grids & Cards */
+    .bento-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .bento-grid.cols-2 {
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    }
+
+    .bento-grid.cols-3 {
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    }
+
+    .bento-card {
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      position: relative;
+    }
+
+    .bento-card:hover {
+      transform: translateY(-3px);
+      background: var(--bg-card-hover);
+    }
+
+    .card-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-top: 4px;
+    }
+
+    .card-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      white-space: pre-line;
+      margin-top: 6px;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-primary);
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+
+    .card-link:hover {
+      text-decoration: underline;
+    }
+
+    .project-thumb {
+      width: 100%;
+      height: 175px;
+      border-radius: var(--radius-md);
+      object-fit: cover;
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 10px;
+    }
+
+    /* Skill Bar */
+    .skill-bar-track {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ffffff, #8b5cf6);
+      border-radius: 999px;
+    }
+
+    /* Empty State */
+    .empty-state {
+      grid-column: 1 / -1;
+      padding: 36px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border: 1px dashed var(--border-subtle);
+      border-radius: var(--radius-md);
+    }
+
+    /* About & Contact Layouts */
+    .about-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .about-main-card {
+      padding: 30px;
+    }
+
+    .about-text {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      white-space: pre-line;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .contact-form-card {
+      padding: 28px;
+    }
+
+    .card-heading {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      margin-bottom: 18px;
+    }
+
+    /* Owner-Only Buttons in Each Section */
+    .owner-action-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .owner-only-btn {
+      background: rgba(16, 185, 129, 0.14);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .owner-only-btn:hover {
+      background: rgba(16, 185, 129, 0.28);
+      transform: translateY(-1px);
+    }
+
+    .card-owner-controls {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .btn-card-edit,
+    .btn-card-delete {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 5px 11px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .btn-card-edit:hover {
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+    }
+
+    .btn-card-delete:hover {
+      color: #fff;
+      background: rgba(255, 77, 77, 0.2);
+      border-color: var(--danger);
+    }
+
+    /* General Buttons & Forms */
+    .btn-primary {
+      background: var(--text-primary);
+      color: var(--bg-dark);
+      border: none;
+      padding: 11px 24px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      padding: 11px 24px;
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: 0.88rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--border-hover);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-subtle {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    .btn-danger-sm {
+      background: rgba(255, 77, 77, 0.25);
+      color: #fca5a5;
+      border: 1px solid rgba(255, 77, 77, 0.4);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    .full-width {
+      width: 100%;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+    }
+
+    .password-input-wrap {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .password-input-wrap input {
+      flex: 1;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 11px 14px;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .form-feedback {
+      margin-top: 10px;
+      font-size: 0.84rem;
+      color: var(--owner-green);
+    }
+
+    /* Owner Inbox */
+    .owner-inbox {
+      margin-top: 24px;
+      padding: 24px;
+    }
+
+    .messages-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .message-item {
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 20px;
+    }
+
+    .modal-card {
+      max-width: 480px;
+      width: 100%;
+      padding: 28px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .modal-header h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .modal-subtext {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .modal-actions-right {
+      display: flex;
+      gap: 10px;
+    }
+
+    .reset-pass-link {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 0.76rem;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .reset-pass-link:hover {
+      color: var(--text-primary);
+    }
+
+    .error-text {
+      color: var(--danger);
+      font-size: 0.82rem;
+      margin-bottom: 10px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px 20px 90px;
+      border-top: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        border-radius: 20px;
+        gap: 12px;
+        padding: 14px;
+      }
+      .main-container {
+        padding-top: 190px;
+      }
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Background Glows & Grid -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="bg-grid"></div>
+
+  <!-- Floating Glass Navigation -->
+  <header class="navbar-wrapper">
+    <nav class="navbar glass-panel">
+      <a href="#home" class="brand-logo" id="nav-brand">ROHITH</a>
+
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About Me</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#achievements" class="nav-link">Achievements</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button id="auth-toggle-btn" class="admin-lock-btn" title="Owner Access Only">
+          <span id="auth-status-dot" class="status-dot"></span>
+          <span id="auth-btn-text">Owner Login</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Owner Mode Floating Banner (Only visible to Owner after Login) -->
+  <div id="owner-banner" class="owner-banner hidden">
+    <div class="owner-banner-content">
+      <span><strong>Owner Mode Unlocked:</strong> Use the green buttons in each section to add or edit details.</span>
+      <div class="owner-banner-actions">
+        <button id="change-pass-btn" class="btn-subtle">Change Password</button>
+        <button id="logout-btn" class="btn-danger-sm">Lock & Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Portfolio Content -->
+  <main class="main-container">
+
+    <!-- ==================== 01. HOME SECTION ==================== -->
+    <section id="home" class="section-block hero-section">
+      <div class="section-top-bar">
+        <span class="section-index">01 // HOME</span>
+        <button class="owner-only-btn hidden" onclick="openHomeModal()">
+          ✎ Add / Edit Home Details
+        </button>
+      </div>
+
+      <div class="hero-card glass-panel">
+        <div class="hero-badge" id="home-badge">PORTFOLIO</div>
+        <h1 class="hero-title" id="home-name">ROHITH</h1>
+        <h2 class="hero-role" id="home-role"></h2>
+        <p class="hero-description" id="home-bio"></p>
+
+        <div class="hero-cta-group">
+          <a href="#projects" class="btn-primary">Projects</a>
+          <a href="#contact" class="btn-secondary">Contact</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 02. ABOUT ME SECTION ==================== -->
+    <section id="about" class="section-block">
+      <div class="section-header">
+        <div>
+          <span class="section-index">02 // ABOUT ME</span>
+          <h2 class="section-title">About Me</h2>
+        </div>
+        <div class="owner-action-group">
+          <button class="owner-only-btn hidden" onclick="openAboutTextModal()">
+            ✎ Edit Bio
+          </button>
+          <button class="owner-only-btn hidden" onclick="openItemModal('about')">
+            + Add About Detail
+          </button>
+        </div>
+      </div>
+
+      <div class="about-layout">
+        <div class="about-main-card glass-panel">
+          <p id="about-description" class="about-text"></p>
+        </div>
+        <div id="about-cards-grid" class="bento-grid cols-2"></div>
+      </div>
+    </section>
+
+    <!-- ==================== 03. SKILLS SECTION ==================== -->
+    <section id="skills" class="section-block">
+      <div class="section-header">
+        <div>
+          <span class="section-index">03 // SKILLS</span>
+          <h2 class="section-title">Skills</h2>
+        </div>
+        <button class="owner-only-btn hidden" onclick="openItemModal('skills')">
+          + Add Skill Details
+        </button>
+      </div>
+
+      <div id="skills-grid" class="bento-grid cols-3"></div>
+    </section>
+
+    <!-- ==================== 04. PROJECTS SECTION ==================== -->
+    <section id="projects" class="section-block">
+      <div class="section-header">
+        <div>
+          <span class="section-index">04 // PROJECTS</span>
+          <h2 class="section-title">Projects</h2>
+        </div>
+        <button class="owner-only-btn hidden" onclick="openItemModal('projects')">
+          + Add Project Details
+        </button>
+      </div>
+
+      <div id="projects-grid" class="bento-grid cols-2"></div>
+    </section>
+
+    <!-- ==================== 05. ACHIEVEMENTS SECTION ==================== -->
+    <section id="achievements" class="section-block">
+      <div class="section-header">
+        <div>
+          <span class="section-index">05 // ACHIEVEMENTS</span>
+          <h2 class="section-title">Achievements</h2>
+        </div>
+        <button class="owner-only-btn hidden" onclick="openItemModal('achievements')">
+          + Add Achievement Details
+        </button>
+      </div>
+
+      <div id="achievements-grid" class="bento-grid cols-2"></div>
+    </section>
+
+    <!-- ==================== 06. CONTACT SECTION ==================== -->
+    <section id="contact" class="section-block">
+      <div class="section-header">
+        <div>
+          <span class="section-index">06 // CONTACT</span>
+          <h2 class="section-title">Contact</h2>
+        </div>
+        <button class="owner-only-btn hidden" onclick="openItemModal('contact')">
+          + Add Contact Details
+        </button>
+      </div>
+
+      <div class="contact-layout">
+        <div id="contact-grid" class="bento-grid cols-2"></div>
+
+        <div class="contact-form-card glass-panel">
+          <h3 class="card-heading">Send a Message</h3>
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="msg-name">Name</label>
+              <input type="text" id="msg-name" required placeholder="Your name" />
+            </div>
+            <div class="form-group">
+              <label for="msg-email">Email</label>
+              <input type="email" id="msg-email" required placeholder="your@email.com" />
+            </div>
+            <div class="form-group">
+              <label for="msg-body">Message</label>
+              <textarea id="msg-body" rows="4" required placeholder="Write your message..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary full-width">Send Message</button>
+            <p id="form-feedback" class="form-feedback"></p>
+          </form>
+        </div>
+      </div>
+
+      <!-- Owner-Only Inbox -->
+      <div id="owner-inbox-panel" class="glass-panel owner-inbox hidden">
+        <h3 class="card-heading">Received Messages (Owner Only)</h3>
+        <div id="messages-list" class="messages-list"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Rohith. All rights reserved.</p>
+  </footer>
+
+  <!-- ==================== OWNER LOGIN MODAL ==================== -->
+  <div id="login-modal" class="modal-backdrop hidden">
+    <div class="modal-card glass-panel">
+      <div class="modal-header">
+        <h3>Owner Authentication</h3>
+        <button class="modal-close" onclick="closeModals()">×</button>
+      </div>
+      <form id="login-form">
+        <p class="modal-subtext">
+          Enter your owner password to unlock the Add/Edit buttons in every section.<br/>
+          Default password: <strong><code>rohith123</code></strong>
+        </p>
+        <div class="form-group">
+          <label for="owner-password">Password</label>
+          <div class="password-input-wrap">
+            <input type="password" id="owner-password" required placeholder="Type rohith123" />
+            <button type="button" id="toggle-pass-vis" class="btn-card-edit" style="padding: 11px 14px;">Show</button>
+          </div>
+        </div>
+        <p id="login-error" class="error-text hidden">Incorrect password. Default is: rohith123</p>
+        <div class="modal-actions">
+          <button type="button" id="reset-default-pass" class="reset-pass-link">Reset to "rohith123"</button>
+          <div class="modal-actions-right">
+            <button type="button" class="btn-secondary" onclick="closeModals()">Cancel</button>
+            <button type="submit" class="btn-primary">Unlock Owner Buttons</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== SECTION DETAILS EDITOR MODAL ==================== -->
+  <div id="editor-modal" class="modal-backdrop hidden">
+    <div class="modal-card glass-panel">
+      <div class="modal-header">
+        <h3 id="editor-modal-title">Edit Details</h3>
+        <button class="modal-close" onclick="closeModals()">×</button>
+      </div>
+      <form id="editor-form">
+        <div id="editor-fields"></div>
+        <div class="modal-actions" style="justify-content: flex-end;">
+          <button type="button" class="btn-secondary" onclick="closeModals()">Cancel</button>
+          <button type="submit" class="btn-primary">Save Details</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- DIRECTLY CONNECTED SCRIPT -->
+  <script>
+    const API_BASE = '/api';
+    let isOwnerAuthenticated = false;
+    let authToken = sessionStorage.getItem('rohith_owner_token') || null;
+
+    const defaultPortfolioData = {
+      home: {
+        badge: 'PORTFOLIO',
+        name: 'ROHITH',
+        role: '',
+        bio: ''
+      },
+      about: {
+        description: 'Hi, I am Rohith.',
+        cards: []
+      },
+      skills: [],
+      projects: [],
+      achievements: [],
+      contact: [],
+      messages: []
+    };
+
+    let portfolioData = JSON.parse(JSON.stringify(defaultPortfolioData));
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      await loadPortfolioData();
+      verifyExistingSession();
+      setupNavigationHighlight();
+    });
+
+    async function loadPortfolioData() {
+      // Load local backup first so changes are never lost
+      const saved = localStorage.getItem('rohith_portfolio_backup');
+      if (saved) {
+        try {
+          portfolioData = JSON.parse(saved);
+        } catch {}
+      }
+
+      try {
+        const res = await fetch(`${API_BASE}/portfolio`);
+        if (res.ok) {
+          const serverData = await res.json();
+          if (serverData && serverData.home) {
+            portfolioData = serverData;
+            localStorage.setItem('rohith_portfolio_backup', JSON.stringify(portfolioData));
+          }
+        }
+      } catch (err) {}
+      renderAllSections();
+    }
+
+    async function savePortfolioData() {
+      localStorage.setItem('rohith_portfolio_backup', JSON.stringify(portfolioData));
+      try {
+        await fetch(`${API_BASE}/portfolio`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`
+          },
+          body: JSON.stringify(portfolioData)
+        });
+      } catch (err) {}
+      renderAllSections();
+    }
+
+    function verifyExistingSession() {
+      if (authToken) {
+        setOwnerMode(true);
+      } else {
+        setOwnerMode(false);
+      }
+    }
+
+    function setOwnerMode(enabled) {
+      isOwnerAuthenticated = enabled;
+      const ownerButtons = document.querySelectorAll('.owner-only-btn');
+      const ownerBanner = document.getElementById('owner-banner');
+      const statusDot = document.getElementById('auth-status-dot');
+      const authBtnText = document.getElementById('auth-btn-text');
+      const inboxPanel = document.getElementById('owner-inbox-panel');
+
+      ownerButtons.forEach(btn => btn.classList.toggle('hidden', !enabled));
+      ownerBanner.classList.toggle('hidden', !enabled);
+      inboxPanel.classList.toggle('hidden', !enabled);
+
+      if (enabled) {
+        statusDot.classList.add('unlocked');
+        authBtnText.textContent = 'Owner Unlocked';
+      } else {
+        statusDot.classList.remove('unlocked');
+        authBtnText.textContent = 'Owner Login';
+        sessionStorage.removeItem('rohith_owner_token');
+        authToken = null;
+      }
+      renderAllSections();
+    }
+
+    // Open Login Modal
+    document.getElementById('auth-toggle-btn').addEventListener('click', () => {
+      if (isOwnerAuthenticated) {
+        setOwnerMode(false);
+      } else {
+        document.getElementById('owner-password').value = '';
+        document.getElementById('login-error').classList.add('hidden');
+        document.getElementById('login-modal').classList.remove('hidden');
+        setTimeout(() => document.getElementById('owner-password').focus(), 50);
+      }
+    });
+
+    // Show / Hide Password Toggle
+    document.getElementById('toggle-pass-vis').addEventListener('click', () => {
+      const passInput = document.getElementById('owner-password');
+      const btn = document.getElementById('toggle-pass-vis');
+      if (passInput.type === 'password') {
+        passInput.type = 'text';
+        btn.textContent = 'Hide';
+      } else {
+        passInput.type = 'password';
+        btn.textContent = 'Show';
+      }
+    });
+
+    // Reset Password to Default (rohith123)
+    document.getElementById('reset-default-pass').addEventListener('click', () => {
+      localStorage.removeItem('rohith_owner_password');
+      const passInput = document.getElementById('owner-password');
+      passInput.value = 'rohith123';
+      document.getElementById('login-error').classList.add('hidden');
+      alert('Password reset to default: rohith123');
+    });
+
+    // Logout
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      setOwnerMode(false);
+    });
+
+    // Change Password
+    document.getElementById('change-pass-btn').addEventListener('click', async () => {
+      const newPass = prompt('Enter new Owner Password (minimum 4 characters):');
+      if (!newPass || newPass.trim().length < 4) return;
+
+      const cleanNew = newPass.trim();
+      localStorage.setItem('rohith_owner_password', cleanNew);
+      try {
+        await fetch(`${API_BASE}/change-password`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`
+          },
+          body: JSON.stringify({ newPassword: cleanNew })
+        });
+      } catch {}
+      alert('Owner password updated to: ' + cleanNew);
+    });
+
+    // FIXED LOGIN HANDLER: Works even if /api/login returns 404/405/500 on static hosts
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const rawPassword = document.getElementById('owner-password').value || '';
+      const enteredPassword = rawPassword.trim();
+      const errorEl = document.getElementById('login-error');
+
+      const customSavedPass = localStorage.getItem('rohith_owner_password');
+
+      // Check local match first (accepts custom password, or default 'rohith123' / 'rohith')
+      const isDefaultMatch =
+        !customSavedPass &&
+        (enteredPassword.toLowerCase() === 'rohith123' || enteredPassword.toLowerCase() === 'rohith');
+      const isCustomMatch = customSavedPass && enteredPassword === customSavedPass;
+
+      if (isDefaultMatch || isCustomMatch) {
+        authToken = 'local-owner-session';
+        // Also try getting a server token if backend is running
+        try {
+          const res = await fetch(`${API_BASE}/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: enteredPassword })
+          });
+          if (res.ok) {
+            const data = await res.json();
+            if (data && data.token) authToken = data.token;
+          }
+        } catch {}
+
+        sessionStorage.setItem('rohith_owner_token', authToken);
+        closeModals();
+        setOwnerMode(true);
+        return;
+      }
+
+      // Otherwise check backend in case password was changed on server
+      try {
+        const res = await fetch(`${API_BASE}/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: enteredPassword })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          authToken = data.token || 'local-owner-session';
+          sessionStorage.setItem('rohith_owner_token', authToken);
+          closeModals();
+          setOwnerMode(true);
+          return;
+        }
+      } catch {}
+
+      errorEl.classList.remove('hidden');
+    });
+
+    function renderAllSections() {
+      renderHome();
+      renderAbout();
+      renderSkills();
+      renderProjects();
+      renderAchievements();
+      renderContact();
+      if (isOwnerAuthenticated) renderMessagesInbox();
+    }
+
+    function renderHome() {
+      const { badge, name, role, bio } = portfolioData.home;
+      document.getElementById('home-badge').textContent = badge || 'PORTFOLIO';
+      document.getElementById('home-name').textContent = name || 'ROHITH';
+      document.getElementById('nav-brand').textContent = name || 'ROHITH';
+      document.getElementById('home-role').textContent = role || '';
+      document.getElementById('home-bio').textContent = bio || '';
+    }
+
+    function renderAbout() {
+      document.getElementById('about-description').textContent =
+        portfolioData.about.description || '';
+
+      const grid = document.getElementById('about-cards-grid');
+      const cards = portfolioData.about.cards || [];
+
+      if (cards.length === 0) {
+        grid.innerHTML = `<div class="empty-state">No additional About details added yet.</div>`;
+        return;
+      }
+
+      grid.innerHTML = cards.map((item, idx) => `
+        <div class="bento-card glass-panel">
+          <div>
+            <span class="card-tag">${escapeHtml(item.label)}</span>
+            <h3 class="card-title">${escapeHtml(item.value)}</h3>
+            ${item.subtext ? `<p class="card-desc">${escapeHtml(item.subtext)}</p>` : ''}
+          </div>
+          ${ownerCardControls('about', idx)}
+        </div>
+      `).join('');
+    }
+
+    function renderSkills() {
+      const grid = document.getElementById('skills-grid');
+      const items = portfolioData.skills || [];
+
+      if (items.length === 0) {
+        grid.innerHTML = `<div class="empty-state">No skills added yet.</div>`;
+        return;
+      }
+
+      grid.innerHTML = items.map((skill, idx) => `
+        <div class="bento-card glass-panel">
+          <div>
+            <span class="card-tag">${escapeHtml(skill.category || 'SKILL')}</span>
+            <h3 class="card-title">${escapeHtml(skill.name)}</h3>
+            ${skill.level ? `
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" style="width: ${Math.min(100, Math.max(0, Number(skill.level)))}%"></div>
+              </div>
+            ` : ''}
+          </div>
+          ${ownerCardControls('skills', idx)}
+        </div>
+      `).join('');
+    }
+
+    function renderProjects() {
+      const grid = document.getElementById('projects-grid');
+      const items = portfolioData.projects || [];
+
+      if (items.length === 0) {
+        grid.innerHTML = `<div class="empty-state">No projects added yet.</div>`;
+        return;
+      }
+
+      grid.innerHTML = items.map((proj, idx) => `
+        <div class="bento-card glass-panel">
+          <div>
+            ${proj.image ? `<img src="${escapeHtml(proj.image)}" alt="${escapeHtml(proj.title)}" class="project-thumb" />` : ''}
+            <span class="card-tag">${escapeHtml(proj.category || 'PROJECT')}</span>
+            <h3 class="card-title">${escapeHtml(proj.title)}</h3>
+            <p class="card-desc">${escapeHtml(proj.description || '')}</p>
+            ${proj.link ? `<a href="${escapeHtml(proj.link)}" target="_blank" rel="noopener" class="card-link">Open Project →</a>` : ''}
+          </div>
+          ${ownerCardControls('projects', idx)}
+        </div>
+      `).join('');
+    }
+
+    function renderAchievements() {
+      const grid = document.getElementById('achievements-grid');
+      const items = portfolioData.achievements || [];
+
+      if (items.length === 0) {
+        grid.innerHTML = `<div class="empty-state">No achievements added yet.</div>`;
+        return;
+      }
+
+      grid.innerHTML = items.map((ach, idx) => `
+        <div class="bento-card glass-panel">
+          <div>
+            <span class="card-tag">${escapeHtml(ach.year || '')} ${ach.organization ? `// ${escapeHtml(ach.organization)}` : ''}</span>
+            <h3 class="card-title">${escapeHtml(ach.title)}</h3>
+            <p class="card-desc">${escapeHtml(ach.description || '')}</p>
+          </div>
+          ${ownerCardControls('achievements', idx)}
+        </div>
+      `).join('');
+    }
+
+    function renderContact() {
+      const grid = document.getElementById('contact-grid');
+      const items = portfolioData.contact || [];
+
+      if (items.length === 0) {
+        grid.innerHTML = `<div class="empty-state">No contact details added yet.</div>`;
+        return;
+      }
+
+      grid.innerHTML = items.map((info, idx) => `
+        <div class="bento-card glass-panel">
+          <div>
+            <span class="card-tag">${escapeHtml(info.platform)}</span>
+            <h3 class="card-title">${escapeHtml(info.value)}</h3>
+            ${info.link ? `<a href="${escapeHtml(info.link)}" target="_blank" rel="noopener" class="card-link">Connect →</a>` : ''}
+          </div>
+          ${ownerCardControls('contact', idx)}
+        </div>
+      `).join('');
+    }
+
+    function ownerCardControls(section, index) {
+      if (!isOwnerAuthenticated) return '';
+      return `
+        <div class="card-owner-controls">
+          <button class="btn-card-edit" onclick="openItemModal('${section}', ${index})">✎ Edit</button>
+          <button class="btn-card-delete" onclick="deleteSectionItem('${section}', ${index})">× Delete</button>
+        </div>
+      `;
+    }
+
+    let currentEditorHandler = null;
+
+    function closeModals() {
+      document.getElementById('login-modal').classList.add('hidden');
+      document.getElementById('editor-modal').classList.add('hidden');
+    }
+
+    function openHomeModal() {
+      if (!isOwnerAuthenticated) return;
+      const { badge, name, role, bio } = portfolioData.home;
+
+      document.getElementById('editor-modal-title').textContent = 'Edit Home Details';
+      document.getElementById('editor-fields').innerHTML = `
+        <div class="form-group">
+          <label>Badge Text</label>
+          <input type="text" id="field-badge" value="${escapeHtml(badge)}" required />
+        </div>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" id="field-name" value="${escapeHtml(name)}" required />
+        </div>
+        <div class="form-group">
+          <label>Role / Headline</label>
+          <input type="text" id="field-role" value="${escapeHtml(role)}" />
+        </div>
+        <div class="form-group">
+          <label>Intro Description</label>
+          <textarea id="field-bio" rows="3">${escapeHtml(bio)}</textarea>
+        </div>
+      `;
+
+      currentEditorHandler = async () => {
+        portfolioData.home = {
+          badge: document.getElementById('field-badge').value.trim(),
+          name: document.getElementById('field-name').value.trim(),
+          role: document.getElementById('field-role').value.trim(),
+          bio: document.getElementById('field-bio').value.trim()
+        };
+        await savePortfolioData();
+      };
+
+      document.getElementById('editor-modal').classList.remove('hidden');
+    }
+
+    function openAboutTextModal() {
+      if (!isOwnerAuthenticated) return;
+      document.getElementById('editor-modal-title').textContent = 'Edit About Me Bio';
+      document.getElementById('editor-fields').innerHTML = `
+        <div class="form-group">
+          <label>About Me Bio</label>
+          <textarea id="field-about-desc" rows="6" required>${escapeHtml(portfolioData.about.description)}</textarea>
+        </div>
+      `;
+
+      currentEditorHandler = async () => {
+        portfolioData.about.description = document.getElementById('field-about-desc').value.trim();
+        await savePortfolioData();
+      };
+
+      document.getElementById('editor-modal').classList.remove('hidden');
+    }
+
+    function openItemModal(section, editIndex = null) {
+      if (!isOwnerAuthenticated) return;
+      const isEdit = editIndex !== null;
+      const fieldsContainer = document.getElementById('editor-fields');
+      const titleEl = document.getElementById('editor-modal-title');
+
+      if (section === 'about') {
+        const item = isEdit ? portfolioData.about.cards[editIndex] : { label: '', value: '', subtext: '' };
+        titleEl.textContent = isEdit ? 'Edit About Detail' : 'Add About Detail';
+        fieldsContainer.innerHTML = `
+          <div class="form-group">
+            <label>Label (e.g. Education, Location, Experience)</label>
+            <input type="text" id="f-label" value="${escapeHtml(item.label)}" required />
+          </div>
+          <div class="form-group">
+            <label>Value / Title</label>
+            <input type="text" id="f-value" value="${escapeHtml(item.value)}" required />
+          </div>
+          <div class="form-group">
+            <label>Extra Detail (Optional)</label>
+            <input type="text" id="f-subtext" value="${escapeHtml(item.subtext || '')}" />
+          </div>
+        `;
+        currentEditorHandler = async () => {
+          const newItem = {
+            label: document.getElementById('f-label').value.trim(),
+            value: document.getElementById('f-value').value.trim(),
+            subtext: document.getElementById('f-subtext').value.trim()
+          };
+          if (isEdit) portfolioData.about.cards[editIndex] = newItem;
+          else portfolioData.about.cards.push(newItem);
+          await savePortfolioData();
+        };
+      }
+
+      else if (section === 'skills') {
+        const item = isEdit ? portfolioData.skills[editIndex] : { name: '', category: '', level: '90' };
+        titleEl.textContent = isEdit ? 'Edit Skill' : 'Add Skill';
+        fieldsContainer.innerHTML = `
+          <div class="form-group">
+            <label>Skill Name</label>
+            <input type="text" id="f-name" value="${escapeHtml(item.name)}" required />
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <input type="text" id="f-cat" value="${escapeHtml(item.category)}" required />
+          </div>
+          <div class="form-group">
+            <label>Proficiency % (1 - 100)</label>
+            <input type="number" id="f-level" min="1" max="100" value="${escapeHtml(item.level)}" />
+          </div>
+        `;
+        currentEditorHandler = async () => {
+          const newItem = {
+            name: document.getElementById('f-name').value.trim(),
+            category: document.getElementById('f-cat').value.trim(),
+            level: document.getElementById('f-level').value.trim()
+          };
+          if (isEdit) portfolioData.skills[editIndex] = newItem;
+          else portfolioData.skills.push(newItem);
+          await savePortfolioData();
+        };
+      }
+
+      else if (section === 'projects') {
+        const item = isEdit ? portfolioData.projects[editIndex] : { title: '', category: '', description: '', image: '', link: '' };
+        titleEl.textContent = isEdit ? 'Edit Project' : 'Add Project';
+        fieldsContainer.innerHTML = `
+          <div class="form-group">
+            <label>Project Title</label>
+            <input type="text" id="f-title" value="${escapeHtml(item.title)}" required />
+          </div>
+          <div class="form-group">
+            <label>Category / Tech Stack</label>
+            <input type="text" id="f-cat" value="${escapeHtml(item.category)}" required />
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="f-desc" rows="3" required>${escapeHtml(item.description)}</textarea>
+          </div>
+          <div class="form-group">
+            <label>Image URL (Optional)</label>
+            <input type="url" id="f-img" value="${escapeHtml(item.image || '')}" />
+          </div>
+          <div class="form-group">
+            <label>Project Link URL (Optional)</label>
+            <input type="url" id="f-link" value="${escapeHtml(item.link || '')}" />
+          </div>
+        `;
+        currentEditorHandler = async () => {
+          const newItem = {
+            title: document.getElementById('f-title').value.trim(),
+            category: document.getElementById('f-cat').value.trim(),
+            description: document.getElementById('f-desc').value.trim(),
+            image: document.getElementById('f-img').value.trim(),
+            link: document.getElementById('f-link').value.trim()
+          };
+          if (isEdit) portfolioData.projects[editIndex] = newItem;
+          else portfolioData.projects.push(newItem);
+          await savePortfolioData();
+        };
+      }
+
+      else if (section === 'achievements') {
+        const item = isEdit ? portfolioData.achievements[editIndex] : { title: '', organization: '', year: '', description: '' };
+        titleEl.textContent = isEdit ? 'Edit Achievement' : 'Add Achievement';
+        fieldsContainer.innerHTML = `
+          <div class="form-group">
+            <label>Achievement Title</label>
+            <input type="text" id="f-title" value="${escapeHtml(item.title)}" required />
+          </div>
+          <div class="form-group">
+            <label>Organization / Event</label>
+            <input type="text" id="f-org" value="${escapeHtml(item.organization)}" />
+          </div>
+          <div class="form-group">
+            <label>Year</label>
+            <input type="text" id="f-year" value="${escapeHtml(item.year)}" />
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="f-desc" rows="3">${escapeHtml(item.description)}</textarea>
+          </div>
+        `;
+        currentEditorHandler = async () => {
+          const newItem = {
+            title: document.getElementById('f-title').value.trim(),
+            organization: document.getElementById('f-org').value.trim(),
+            year: document.getElementById('f-year').value.trim(),
+            description: document.getElementById('f-desc').value.trim()
+          };
+          if (isEdit) portfolioData.achievements[editIndex] = newItem;
+          else portfolioData.achievements.push(newItem);
+          await savePortfolioData();
+        };
+      }
+
+      else if (section === 'contact') {
+        const item = isEdit ? portfolioData.contact[editIndex] : { platform: '', value: '', link: '' };
+        titleEl.textContent = isEdit ? 'Edit Contact Detail' : 'Add Contact Detail';
+        fieldsContainer.innerHTML = `
+          <div class="form-group">
+            <label>Platform / Label (e.g. Email, Phone, LinkedIn)</label>
+            <input type="text" id="f-platform" value="${escapeHtml(item.platform)}" required />
+          </div>
+          <div class="form-group">
+            <label>Value (e.g. rohith@example.com)</label>
+            <input type="text" id="f-value" value="${escapeHtml(item.value)}" required />
+          </div>
+          <div class="form-group">
+            <label>Link (Optional)</label>
+            <input type="text" id="f-link" value="${escapeHtml(item.link || '')}" />
+          </div>
+        `;
+        currentEditorHandler = async () => {
+          const newItem = {
+            platform: document.getElementById('f-platform').value.trim(),
+            value: document.getElementById('f-value').value.trim(),
+            link: document.getElementById('f-link').value.trim()
+          };
+          if (isEdit) portfolioData.contact[editIndex] = newItem;
+          else portfolioData.contact.push(newItem);
+          await savePortfolioData();
+        };
+      }
+
+      document.getElementById('editor-modal').classList.remove('hidden');
+    }
+
+    document.getElementById('editor-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (currentEditorHandler) {
+        await currentEditorHandler();
+        closeModals();
+      }
+    });
+
+    async function deleteSectionItem(section, index) {
+      if (!isOwnerAuthenticated) return;
+      if (!confirm('Delete this item?')) return;
+
+      if (section === 'about') {
+        portfolioData.about.cards.splice(index, 1);
+      } else {
+        portfolioData[section].splice(index, 1);
+      }
+      await savePortfolioData();
+    }
+
+    document.getElementById('contact-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const newMsg = {
+        name: document.getElementById('msg-name').value.trim(),
+        email: document.getElementById('msg-email').value.trim(),
+        body: document.getElementById('msg-body').value.trim(),
+        date: new Date().toLocaleDateString()
+      };
+
+      portfolioData.messages = portfolioData.messages || [];
+      portfolioData.messages.unshift(newMsg);
+
+      try {
+        await fetch(`${API_BASE}/messages`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newMsg)
+        });
+      } catch {}
+
+      localStorage.setItem('rohith_portfolio_backup', JSON.stringify(portfolioData));
+      e.target.reset();
+
+      const feedback = document.getElementById('form-feedback');
+      feedback.textContent = 'Message sent!';
+      setTimeout(() => (feedback.textContent = ''), 4000);
+      if (isOwnerAuthenticated) renderMessagesInbox();
+    });
+
+    function renderMessagesInbox() {
+      const list = document.getElementById('messages-list');
+      const msgs = portfolioData.messages || [];
+
+      if (msgs.length === 0) {
+        list.innerHTML = `<div class="empty-state">No messages received yet.</div>`;
+        return;
+      }
+
+      list.innerHTML = msgs.map((m, idx) => `
+        <div class="message-item">
+          <div>
+            <span class="card-tag">${escapeHtml(m.date)} // ${escapeHtml(m.email)}</span>
+            <h4 class="card-title" style="font-size:1rem;">${escapeHtml(m.name)}</h4>
+            <p class="card-desc">${escapeHtml(m.body)}</p>
+          </div>
+          <button class="btn-card-delete" onclick="deleteMessage(${idx})">×</button>
+        </div>
+      `).join('');
+    }
+
+    async function deleteMessage(index) {
+      portfolioData.messages.splice(index, 1);
+      await savePortfolioData();
+    }
+
+    function escapeHtml(str = '') {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function setupNavigationHighlight() {
+      const sections = document.querySelectorAll('.section-block');
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      window.addEventListener('scroll', () => {
+        let current = 'home';
+        sections.forEach(sec => {
+          const top = sec.offsetTop - 180;
+          if (window.scrollY >= top) current = sec.getAttribute('id');
+        });
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
